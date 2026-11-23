@@ -75,7 +75,9 @@ export const siteContent = {
 
   contact: {
     email: 'amdadulibm@gmail.com',
-    // TODO: Replace YOUR_FORMSPREE_ID with your real Formspree form ID (https://formspree.io/forms)
+    // Active zero-backend email delivery (confirm once via the email sent to your inbox on first submission)
+    formSubmitEndpoint: 'https://formsubmit.co/ajax/amdadulibm@gmail.com',
+    // Optional: Replace YOUR_FORMSPREE_ID to use Formspree instead (takes priority when configured)
     formspreeEndpoint: 'https://formspree.io/f/YOUR_FORMSPREE_ID',
     heading: "Let's build something together",
     description:

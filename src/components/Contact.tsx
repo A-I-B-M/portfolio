@@ -62,29 +62,35 @@ export function Contact() {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) return;
 
-    if (contact.formspreeEndpoint.includes('YOUR_FORMSPREE_ID')) {
-      setStatus('error');
-      setErrorMessage(
-        `The contact form endpoint is not configured yet. Replace YOUR_FORMSPREE_ID in src/data/content.ts or email me directly at ${contact.email}.`,
-      );
-      return;
-    }
+    const useFormspree = !contact.formspreeEndpoint.includes('YOUR_FORMSPREE_ID');
+    const endpoint = useFormspree ? contact.formspreeEndpoint : contact.formSubmitEndpoint;
 
     setStatus('submitting');
     setErrorMessage('');
 
+    const payload = useFormspree
+      ? {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
+        }
+      : {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
+          _subject: `Portfolio contact from ${values.name.trim()}`,
+          _replyto: values.email.trim(),
+          _template: 'table',
+        };
+
     try {
-      const response = await fetch(contact.formspreeEndpoint, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          name: values.name.trim(),
-          email: values.email.trim(),
-          message: values.message.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
@@ -93,16 +99,22 @@ export function Contact() {
       } else {
         setStatus('error');
         setErrorMessage(
-          `Something went wrong sending your message. Please try again or email ${contact.email} directly.`,
+          `Could not deliver right now. Please try again or email ${contact.email} directly.`,
         );
       }
     } catch {
       setStatus('error');
       setErrorMessage(
-        `Unable to reach the form service right now. You can email me directly at ${contact.email}.`,
+        `Unable to reach the mail service right now. You can send it directly via your email app below.`,
       );
     }
   };
+
+  const mailtoFallbackHref = `mailto:${contact.email}?subject=${encodeURIComponent(
+    values.name.trim() ? `Portfolio message from ${values.name.trim()}` : 'Portfolio inquiry',
+  )}&body=${encodeURIComponent(
+    `From: ${values.name.trim()} (${values.email.trim()})\n\n${values.message.trim()}`,
+  )}`;
 
   const handleCopyEmail = async () => {
     try {
@@ -307,23 +319,32 @@ export function Contact() {
                 className="flex items-start gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm text-emerald-700 dark:text-emerald-300"
               >
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Thanks for reaching out! Your message has been sent successfully.</span>
+                <span>Thanks for reaching out! Your message has been sent directly to my inbox.</span>
               </div>
             )}
 
             {status === 'error' && errorMessage && (
               <div
                 role="alert"
-                className="flex items-start gap-2.5 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-sm text-rose-700 dark:text-rose-300"
+                className="flex flex-col gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-sm text-rose-700 dark:text-rose-300"
               >
-                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{errorMessage}</span>
+                <div className="flex items-start gap-2.5">
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>{errorMessage}</span>
+                </div>
+                <a
+                  href={mailtoFallbackHref}
+                  className="ml-6 inline-flex w-fit items-center gap-1.5 text-xs font-semibold underline underline-offset-4 hover:opacity-80"
+                >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  Open pre-filled message in your email app
+                </a>
               </div>
             )}
 
             <div className="flex items-center justify-between gap-4 pt-1">
               <p className="text-xs text-[var(--fg-subtle)]">
-                Powered by Formspree · No spam, ever.
+                Messages go directly to my inbox · No spam, ever.
               </p>
               <Button type="submit" variant="primary" size="md" disabled={status === 'submitting'}>
                 <Send className="h-4 w-4" aria-hidden="true" />
