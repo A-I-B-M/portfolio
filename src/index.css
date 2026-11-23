@@ -6,11 +6,15 @@
   --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, -apple-system, sans-serif;
 
   --color-bg: var(--bg);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
   --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
   --color-border-subtle: var(--border-subtle);
   --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
@@ -20,36 +24,52 @@
 
 :root {
   --bg: #FAFAFB;
-  --surface: #FFFFFF;
-  --surface-elevated: #F4F4F6;
+  --surface-1: #F4F4F7;
+  --surface-2: #FFFFFF;
+  --surface-3: #EFEFF4;
+  --surface: var(--surface-2);
+  --surface-elevated: var(--surface-1);
   --fg: #0D0D10;
   --fg-muted: #4A4A54;
   --fg-subtle: #5B5B66;
-  --border-subtle: rgba(13, 13, 16, 0.08);
+  --border: rgba(13, 13, 16, 0.08);
+  --border-subtle: var(--border);
   --border-strong: rgba(13, 13, 16, 0.16);
   --accent: #4F46E5;
   --accent-hover: #4338CA;
+  --accent-rgb: 79, 70, 229;
   --accent-soft: rgba(79, 70, 229, 0.10);
   --spotlight-color: rgba(79, 70, 229, 0.09);
-  --card-glass: rgba(255, 255, 255, 0.78);
+  --card-glass: rgba(255, 255, 255, 0.80);
+  --card-glass-hover: rgba(255, 255, 255, 0.94);
   --nav-glass: rgba(250, 250, 251, 0.78);
+  --grid-line: rgba(13, 13, 16, 0.045);
+  --divider-line: rgba(13, 13, 16, 0.09);
 }
 
 .dark {
-  --bg: #050506;
-  --surface: #0B0B0E;
-  --surface-elevated: #121216;
-  --fg: #F5F5F7;
+  --bg: #0B0B0F;
+  --surface-1: #111116;
+  --surface-2: #16161D;
+  --surface-3: #1C1C25;
+  --surface: var(--surface-1);
+  --surface-elevated: var(--surface-3);
+  --fg: #EDEDF0;
   --fg-muted: #A1A1AA;
-  --fg-subtle: #94949E;
-  --border-subtle: rgba(255, 255, 255, 0.075);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --fg-subtle: #71717A;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: var(--border);
+  --border-strong: rgba(255, 255, 255, 0.14);
   --accent: #818CF8;
   --accent-hover: #6366F1;
-  --accent-soft: rgba(129, 140, 248, 0.11);
+  --accent-rgb: 129, 140, 248;
+  --accent-soft: rgba(129, 140, 248, 0.12);
   --spotlight-color: rgba(129, 140, 248, 0.14);
-  --card-glass: linear-gradient(180deg, rgba(16, 16, 20, 0.82) 0%, rgba(9, 9, 12, 0.90) 100%);
-  --nav-glass: rgba(5, 5, 6, 0.82);
+  --card-glass: rgba(22, 22, 29, 0.76);
+  --card-glass-hover: rgba(28, 28, 37, 0.88);
+  --nav-glass: rgba(11, 11, 15, 0.70);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --divider-line: rgba(255, 255, 255, 0.10);
 }
 
 @layer base {
@@ -99,9 +119,113 @@
   }
 }
 
-/* Subtle film grain overlay */
+/* Subtle gradient text on large headings in dark mode */
+.dark .heading-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EDEDF0 48%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle film grain / noise overlay (inline SVG, no external files) */
 .bg-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* Soft edge vignette (slightly darker edges, clearer center) */
+.bg-vignette {
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 42%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+
+.dark .bg-vignette {
+  background: radial-gradient(
+    ellipse 82% 72% at 50% 40%,
+    transparent 42%,
+    rgba(3, 3, 6, 0.55) 100%
+  );
+}
+
+/* Hero-only subtle 1px grid with radial edge fade */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 72% 65% at 50% 45%, #000 25%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 65% at 50% 45%, #000 25%, transparent 78%);
+}
+
+/* 1px gradient section divider (no harsh block seams) */
+.section-divider {
+  height: 1px;
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--divider-line) 50%,
+    transparent 100%
+  );
+}
+
+/* Gentle vertical gradient tint for alternating sections */
+.section-band {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(17, 17, 22, 0.03) 20%,
+    rgba(17, 17, 22, 0.03) 80%,
+    transparent 100%
+  );
+}
+
+.dark .section-band {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(17, 17, 22, 0.65) 18%,
+    rgba(17, 17, 22, 0.65) 82%,
+    transparent 100%
+  );
+}
+
+/* Slowly drifting ambient glows (24-28s loop, disabled for reduced motion) */
+@keyframes glow-drift-a {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, 16px, 0) scale(1.04);
+  }
+}
+
+@keyframes glow-drift-b {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-22px, -18px, 0) scale(1.05);
+  }
+}
+
+.animate-glow-drift-a {
+  animation: glow-drift-a 26s ease-in-out infinite;
+}
+
+.animate-glow-drift-b {
+  animation: glow-drift-b 30s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-glow-drift-a,
+  .animate-glow-drift-b {
+    animation: none;
+  }
 }
 
 /* Animated underline link */
@@ -158,28 +282,37 @@
   }
 }
 
-/* Desktop-only cursor spotlight */
+/* Layered glass cards + desktop-only cursor spotlight */
 .spotlight-card {
   position: relative;
   background: var(--card-glass);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+  box-shadow: 0 1px 2px rgba(13, 13, 16, 0.04), 0 8px 24px -12px rgba(13, 13, 16, 0.08);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 240ms ease,
     border-color 240ms ease,
-    box-shadow 240ms ease;
+    box-shadow 260ms ease;
 }
 
 .spotlight-card:hover {
+  background: var(--card-glass-hover);
   border-color: var(--border-strong);
 }
 
 .dark .spotlight-card {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 30px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 40px -10px rgba(0, 0, 0, 0.6);
 }
 
 .dark .spotlight-card:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 36px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 10px 40px -10px rgba(0, 0, 0, 0.68),
+    0 0 40px -10px rgba(var(--accent-rgb), 0.25);
 }
 
 @media (hover: hover) and (pointer: fine) {

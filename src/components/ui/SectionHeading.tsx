@@ -14,7 +14,7 @@ export function SectionHeading({ id, eyebrow, title, description }: SectionHeadi
       </p>
       <h2
         id={id}
-        className="text-3xl font-bold tracking-tight text-[var(--fg)] sm:text-4xl"
+        className="heading-gradient inline-block text-3xl font-bold tracking-tight text-[var(--fg)] sm:text-4xl"
       >
         {title}
       </h2>

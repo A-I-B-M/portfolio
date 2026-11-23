@@ -24,9 +24,9 @@ export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-[var(--accent)] text-white dark:text-[#0A0A0B] font-medium shadow-[0_1px_2px_rgba(0,0,0,0.2),0_0_24px_var(--accent-soft)] hover:bg-[var(--accent-hover)] dark:hover:bg-[#A5B4FC] hover:-translate-y-0.5 active:translate-y-0',
+    'bg-[var(--accent)] text-white dark:text-[#0B0B0F] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_0_30px_-6px_rgba(var(--accent-rgb),0.5)] hover:bg-[var(--accent-hover)] dark:hover:bg-[#A5B4FC] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.38),0_0_36px_-4px_rgba(var(--accent-rgb),0.65)] hover:-translate-y-0.5 active:translate-y-0',
   secondary:
-    'bg-[var(--surface)] text-[var(--fg)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] hover:bg-[var(--surface-elevated)] hover:-translate-y-0.5 active:translate-y-0',
+    'bg-transparent text-[var(--fg)] border border-[var(--border-strong)] hover:bg-[var(--surface-2)] hover:border-[var(--border-strong)] hover:-translate-y-0.5 active:translate-y-0',
   ghost:
     'text-[var(--fg-muted)] hover:text-[var(--fg)] hover:bg-[var(--surface-elevated)]',
 };

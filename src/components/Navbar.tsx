@@ -36,10 +36,8 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-200 ${
-        scrolled
-          ? 'border-b border-[var(--border-subtle)] bg-[var(--nav-glass)] backdrop-blur-xl'
-          : 'border-b border-transparent bg-transparent'
+      className={`sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--nav-glass)] backdrop-blur-xl transition-shadow duration-200 ${
+        scrolled ? 'shadow-[0_10px_30px_-14px_rgba(0,0,0,0.55)]' : ''
       }`}
     >
       <a

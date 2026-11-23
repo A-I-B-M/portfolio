@@ -62,6 +62,12 @@ export function Hero() {
       aria-label="Introduction"
       className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl items-center px-5 pt-10 pb-20 sm:px-8 sm:pt-14 sm:pb-24"
     >
+      {/* Subtle hero-only grid pattern fading toward edges */}
+      <div
+        aria-hidden="true"
+        className="hero-grid-pattern pointer-events-none absolute inset-0 -z-10"
+      />
+
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.25fr_0.85fr] lg:gap-16">
         {/* Left column: copy & actions */}
         <motion.div
@@ -86,7 +92,7 @@ export function Hero() {
             variants={itemVariants}
             className="text-4xl font-bold tracking-tight text-[var(--fg)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]"
           >
-            {personal.name}
+            <span className="heading-gradient inline-block">{personal.name}</span>
             <span className="mt-2 block text-2xl font-semibold text-[var(--fg-muted)] sm:text-3xl lg:text-[2.15rem]">
               {personal.role}
             </span>
