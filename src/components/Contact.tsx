@@ -115,11 +115,11 @@ export function Contact() {
   };
 
   const socialItems = [
-    { label: 'GitHub', handle: '@amdadul', href: contact.socials.github, icon: SiGithub },
-    { label: 'LinkedIn', handle: 'in/amdadul', href: contact.socials.linkedin, icon: FaLinkedinIn },
+    { label: 'GitHub', handle: '@A-I-B-M', href: contact.socials.github, icon: SiGithub },
+    { label: 'LinkedIn', handle: 'in/amdadul09', href: contact.socials.linkedin, icon: FaLinkedinIn },
     {
       label: 'Codeforces',
-      handle: 'amdadul',
+      handle: 'amdadul_',
       href: contact.socials.codeforces,
       icon: SiCodeforces,
     },

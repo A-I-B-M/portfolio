@@ -35,7 +35,7 @@ export function About() {
                 rel="noopener noreferrer"
                 className="link-underline text-[var(--fg-muted)] transition-colors hover:text-[var(--fg)]"
               >
-                Codeforces: amdadul (Pupil, 1200+)
+                Codeforces: amdadul_ (Pupil, 1200+)
               </a>
             </div>
           </div>

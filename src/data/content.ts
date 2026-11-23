@@ -81,11 +81,9 @@ export const siteContent = {
     description:
       'Open to software engineering internships, full-stack & AI projects, and meaningful collaborations. Drop a message or reach out directly via email.',
     socials: {
-      // TODO: Verify your exact GitHub profile URL
-      github: 'https://github.com/amdadul',
-      // TODO: Verify your exact LinkedIn profile URL
-      linkedin: 'https://www.linkedin.com/in/amdadul',
-      codeforces: 'https://codeforces.com/profile/amdadul',
+      github: 'https://github.com/A-I-B-M',
+      linkedin: 'https://www.linkedin.com/in/amdadul09',
+      codeforces: 'https://codeforces.com/profile/amdadul_',
     },
   },
 
