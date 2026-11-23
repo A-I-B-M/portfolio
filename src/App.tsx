@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
@@ -11,6 +11,7 @@ import { Skills } from './components/Skills';
 import { siteContent } from './data/content';
 import { useActiveSection } from './hooks/useActiveSection';
 import { useTheme } from './hooks/useTheme';
+import { cancelSmoothScroll, smoothScrollToHash } from './utils/smoothScroll';
 
 export function App() {
   const { theme, toggleTheme } = useTheme();
@@ -19,6 +20,38 @@ export function App() {
     [],
   );
   const activeSection = useActiveSection(sectionIds);
+
+  useEffect(() => {
+    const handleAnchorClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+
+      if (smoothScrollToHash(href)) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+      cancelSmoothScroll();
+    };
+  }, []);
 
   return (
     <MotionConfig reducedMotion="user">
