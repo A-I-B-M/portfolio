@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <defs>
+    <linearGradient id="p3-bg" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0B10"/>
+      <stop offset="52%" stop-color="#131628"/>
+      <stop offset="100%" stop-color="#0A0A0D"/>
+    </linearGradient>
+    <radialGradient id="p3-glow" cx="0.7" cy="0.35" r="0.6">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="p3-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="720" fill="url(#p3-bg)"/>
+  <rect width="1280" height="720" fill="url(#p3-grid)"/>
+  <rect width="1280" height="720" fill="url(#p3-glow)"/>
+  <!-- Stylized health network nodes -->
+  <rect x="815" y="190" width="230" height="230" rx="36" fill="#12121A" fill-opacity="0.82" stroke="#818CF8" stroke-opacity="0.3"/>
+  <rect x="910" y="245" width="40" height="120" rx="10" fill="#818CF8" fill-opacity="0.65"/>
+  <rect x="870" y="285" width="120" height="40" rx="10" fill="#818CF8" fill-opacity="0.65"/>
+  <rect x="88" y="88" width="215" height="36" rx="18" fill="#818CF8" fill-opacity="0.14" stroke="#818CF8" stroke-opacity="0.35"/>
+  <text x="195" y="111" text-anchor="middle" fill="#C7D2FE" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2">HEALTHCARE PLATFORM</text>
+  <text x="88" y="340" fill="#F4F4F5" font-family="system-ui, -apple-system, sans-serif" font-size="60" font-weight="700" letter-spacing="-1.8">Niramoy</text>
+  <text x="88" y="392" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">PHP · MySQL · HTML · CSS · JavaScript</text>
+  <rect x="88" y="592" width="276" height="40" rx="8" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="226" y="617" text-anchor="middle" fill="#71717A" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14">Project Thumbnail 1280×720</text>
+</svg>

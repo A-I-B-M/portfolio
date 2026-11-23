@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="og-bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A0B"/>
+      <stop offset="100%" stop-color="#121322"/>
+    </linearGradient>
+    <radialGradient id="og-glow" cx="0.8" cy="0.2" r="0.65">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="og-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-bg)"/>
+  <rect width="1200" height="630" fill="url(#og-grid)"/>
+  <rect width="1200" height="630" fill="url(#og-glow)"/>
+  <rect x="80" y="88" width="176" height="36" rx="18" fill="#818CF8" fill-opacity="0.15" stroke="#818CF8" stroke-opacity="0.35"/>
+  <text x="168" y="111" text-anchor="middle" fill="#C7D2FE" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2">PORTFOLIO</text>
+  <text x="80" y="280" fill="#F4F4F5" font-family="system-ui, -apple-system, sans-serif" font-size="76" font-weight="700" letter-spacing="-2.4">Amadul Islam</text>
+  <text x="80" y="348" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="400">CSE Undergraduate · Full-Stack &amp; AI Developer · 1500+ CP Problems</text>
+  <text x="80" y="540" fill="#71717A" font-family="ui-monospace, SFMono-Regular, monospace" font-size="20">github.com/amdadul · amdadulibm@gmail.com</text>
+</svg>
