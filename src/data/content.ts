@@ -176,8 +176,7 @@ export const siteContent = {
       imageKey: 'project1',
       // TODO: Add live demo URL for MosquitoWatch when deployed
       liveUrl: undefined,
-      // TODO: Add GitHub repository URL for MosquitoWatch
-      githubUrl: undefined,
+      githubUrl: 'https://github.com/A-I-B-M/MosquitoWatch',
     },
     {
       id: 'easycode',
@@ -189,8 +188,7 @@ export const siteContent = {
       imageKey: 'project2',
       // TODO: Add live demo URL for EasyCode when deployed
       liveUrl: undefined,
-      // TODO: Add GitHub repository URL for EasyCode
-      githubUrl: undefined,
+      githubUrl: 'https://github.com/A-I-B-M/Easycode-backend',
     },
     {
       id: 'niramoy',
@@ -202,8 +200,7 @@ export const siteContent = {
       imageKey: 'project3',
       // TODO: Add live demo URL for Niramoy when deployed
       liveUrl: undefined,
-      // TODO: Add GitHub repository URL for Niramoy
-      githubUrl: undefined,
+      githubUrl: 'https://github.com/A-I-B-M/Niramoy-',
     },
   ] satisfies ProjectItem[],
 
