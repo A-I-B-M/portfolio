@@ -134,10 +134,8 @@ export const siteContent = {
       { name: 'Spring Boot', iconKey: 'springboot' },
       { name: 'Node.js', iconKey: 'nodejs' },
       { name: 'Express.js', iconKey: 'express' },
-      { name: 'Flask', iconKey: 'flask' },
       { name: 'PyTorch', iconKey: 'pytorch' },
       { name: 'Bootstrap', iconKey: 'bootstrap' },
-      { name: 'Leaflet.js', iconKey: 'leaflet' },
     ],
     Tools: [
       { name: 'PostgreSQL', iconKey: 'postgresql' },
