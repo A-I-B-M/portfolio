@@ -32,7 +32,7 @@ Thumbs.db
 # Build cache
 *.tsbuildinfo
 
-# Local source notes & raw unoptimized source files
-plan.txt
-profile.JPG
-resume.pdf
+# Local source notes & raw unoptimized source files (root only)
+/plan.txt
+/profile.JPG
+/resume.pdf
