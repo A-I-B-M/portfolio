@@ -9,8 +9,8 @@ export const images = {
   profile: {
     src: '/images/profile.jpg',
     alt: 'Portrait photo of Amadul Islam',
-    width: 800,
-    height: 800,
+    width: 1000,
+    height: 1000,
   },
   project1: {
     src: '/images/project1.svg',
