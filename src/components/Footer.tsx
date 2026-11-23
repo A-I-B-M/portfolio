@@ -10,7 +10,7 @@ export function Footer() {
         <p>
           &copy; {year} {siteContent.personal.name}. All rights reserved.
         </p>
-        <p className="text-[var(--fg-muted)]">Built with React &amp; Tailwind</p>
+
         <a
           href="#top"
           aria-label="Back to top"

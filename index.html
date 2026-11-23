@@ -1,63 +1,60 @@
 <!doctype html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amadul Islam — CSE Undergraduate &amp; Software Developer</title>
-    <meta
-      name="description"
-      content="Portfolio of Amadul Islam — Computer Science & Engineering undergraduate at United International University, competitive programmer (1500+ problems solved), and full-stack & AI software developer."
-    />
-    <meta name="author" content="Amadul Islam" />
-    <meta name="theme-color" content="#050506" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)" />
 
-    <!-- TODO: Update canonical URL after deploying to your live/custom domain -->
-    <link rel="canonical" href="https://amadul-portfolio.vercel.app/" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amadul Islam </title>
+  <meta name="description"
+    content="Portfolio of Amadul Islam — Computer Science & Engineering undergraduate at United International University, competitive programmer (1500+ problems solved), and full-stack & AI software developer." />
+  <meta name="author" content="Amadul Islam" />
+  <meta name="theme-color" content="#050506" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FAFAFB" media="(prefers-color-scheme: light)" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <!-- TODO: Update canonical URL after deploying to your live/custom domain -->
+  <link rel="canonical" href="https://amadul-portfolio.vercel.app/" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Amadul Islam — CSE Undergraduate &amp; Software Developer" />
-    <meta
-      property="og:description"
-      content="Full-stack &amp; AI software developer, competitive programmer (1500+ problems solved), and CSE undergraduate at UIU."
-    />
-    <meta property="og:image" content="/images/og-image.svg" />
-    <meta property="og:url" content="https://amadul-portfolio.vercel.app/" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Amadul Islam — CSE Undergraduate &amp; Software Developer" />
-    <meta
-      name="twitter:description"
-      content="Full-stack &amp; AI software developer, competitive programmer (1500+ problems solved), and CSE undergraduate at UIU."
-    />
-    <meta name="twitter:image" content="/images/og-image.svg" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Amadul Islam — CSE Undergraduate &amp; Software Developer" />
+  <meta property="og:description"
+    content="Full-stack &amp; AI software developer, competitive programmer (1500+ problems solved), and CSE undergraduate at UIU." />
+  <meta property="og:image" content="/images/og-image.svg" />
+  <meta property="og:url" content="https://amadul-portfolio.vercel.app/" />
 
-    <!-- Prevent theme flash before React hydrates -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var theme = stored;
-          if (!theme) {
-            theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-          }
-          var root = document.documentElement;
-          root.classList.remove('light', 'dark');
-          root.classList.add(theme);
-          root.style.colorScheme = theme;
-        } catch (e) {
-          document.documentElement.classList.add('dark');
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Amadul Islam — CSE Undergraduate &amp; Software Developer" />
+  <meta name="twitter:description"
+    content="Full-stack &amp; AI software developer, competitive programmer (1500+ problems solved), and CSE undergraduate at UIU." />
+  <meta name="twitter:image" content="/images/og-image.svg" />
+
+  <!-- Prevent theme flash before React hydrates -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored;
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        var root = document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+        root.style.colorScheme = theme;
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
