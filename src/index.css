@@ -237,8 +237,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-glow-drift-a,
-  .animate-glow-drift-b,
-  .typing-cursor {
+  .animate-glow-drift-b {
     animation: none;
   }
 }

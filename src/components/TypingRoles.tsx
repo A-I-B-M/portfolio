@@ -5,10 +5,9 @@ interface TypingRolesProps {
   typingSpeed?: number;
   deletingSpeed?: number;
   pauseDuration?: number;
+  respectReducedMotion?: boolean;
   className?: string;
 }
-
-type Phase = 'typing' | 'pausing' | 'deleting';
 
 function getInitialReducedMotion(): boolean {
   if (typeof window === 'undefined') return false;
@@ -20,6 +19,7 @@ export function TypingRoles({
   typingSpeed = 80,
   deletingSpeed = 40,
   pauseDuration = 1500,
+  respectReducedMotion = false,
   className = '',
 }: TypingRolesProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(
@@ -27,61 +27,62 @@ export function TypingRoles({
   );
   const [roleIndex, setRoleIndex] = useState<number>(0);
   const [charCount, setCharCount] = useState<number>(0);
-  const [phase, setPhase] = useState<Phase>('typing');
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+
+  const isStatic = respectReducedMotion && prefersReducedMotion;
 
   useEffect(() => {
+    if (!respectReducedMotion) return;
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handleChange = (event: MediaQueryListEvent) => {
       setPrefersReducedMotion(event.matches);
     };
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [respectReducedMotion]);
 
   useEffect(() => {
-    if (prefersReducedMotion || roles.length === 0) {
+    if (isStatic || roles.length === 0) {
       return;
     }
 
     const currentRole = roles[roleIndex % roles.length];
-    let timerId: number;
+    let delay = typingSpeed;
 
-    if (phase === 'typing') {
-      if (charCount < currentRole.length) {
-        timerId = window.setTimeout(() => {
-          setCharCount((prev) => prev + 1);
-        }, typingSpeed);
-      } else {
-        timerId = window.setTimeout(() => {
-          setPhase('pausing');
-        }, 0);
-      }
-    } else if (phase === 'pausing') {
-      timerId = window.setTimeout(() => {
-        setPhase('deleting');
-      }, pauseDuration);
-    } else {
-      if (charCount > 0) {
-        timerId = window.setTimeout(() => {
-          setCharCount((prev) => prev - 1);
-        }, deletingSpeed);
-      } else {
-        timerId = window.setTimeout(() => {
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-          setPhase('typing');
-        }, typingSpeed);
-      }
+    if (!isDeleting && charCount === currentRole.length) {
+      delay = pauseDuration;
+    } else if (isDeleting && charCount > 0) {
+      delay = deletingSpeed;
+    } else if (isDeleting && charCount === 0) {
+      delay = 220;
     }
+
+    const timerId = window.setTimeout(() => {
+      if (!isDeleting) {
+        if (charCount < currentRole.length) {
+          setCharCount((prev) => prev + 1);
+        } else {
+          setIsDeleting(true);
+        }
+      } else {
+        if (charCount > 0) {
+          setCharCount((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, delay);
 
     return () => {
       window.clearTimeout(timerId);
     };
   }, [
-    prefersReducedMotion,
+    isStatic,
     roles,
     roleIndex,
     charCount,
-    phase,
+    isDeleting,
     typingSpeed,
     deletingSpeed,
     pauseDuration,
@@ -92,9 +93,7 @@ export function TypingRoles({
   }
 
   const currentRole = roles[roleIndex % roles.length];
-  const visibleText = prefersReducedMotion
-    ? roles[0]
-    : currentRole.slice(0, charCount);
+  const visibleText = isStatic ? roles[0] : currentRole.slice(0, charCount);
 
   return (
     <span
@@ -102,7 +101,7 @@ export function TypingRoles({
       className={`flex min-h-[1.35em] max-w-full items-center whitespace-nowrap leading-[1.3] text-[var(--accent)] ${className}`}
     >
       <span aria-hidden="true">{visibleText}</span>
-      {!prefersReducedMotion && (
+      {!isStatic && (
         <span
           aria-hidden="true"
           className="typing-cursor ml-1 inline-block h-[0.95em] w-[2px] shrink-0 rounded-full bg-[var(--accent)]"
