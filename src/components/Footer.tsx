@@ -5,16 +5,15 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--border-subtle)] bg-[var(--surface)]/50">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-xs text-[var(--fg-subtle)] sm:flex-row sm:px-8">
-        <p>
-          &copy; {year} {siteContent.personal.name}. All rights reserved.
+    <footer className="border-t border-[var(--border)]">
+      <div className="container-editorial flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
+        <p className="type-meta text-[var(--text-muted)]">
+          &copy; {year} {siteContent.personal.name}
         </p>
-
         <a
           href="#top"
           aria-label="Back to top"
-          className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface)] px-3 py-1.5 text-xs font-medium text-[var(--fg-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:text-[var(--fg)]"
+          className="type-meta inline-flex items-center gap-1.5 text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
         >
           Back to top
           <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />

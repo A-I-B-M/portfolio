@@ -1,23 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
-  <defs>
-    <linearGradient id="og-bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0B0B0F"/>
-      <stop offset="100%" stop-color="#0D1916"/>
-    </linearGradient>
-    <radialGradient id="og-glow" cx="0.8" cy="0.2" r="0.65">
-      <stop offset="0%" stop-color="#10B981" stop-opacity="0.30"/>
-      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="og-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect width="1200" height="630" fill="url(#og-bg)"/>
-  <rect width="1200" height="630" fill="url(#og-grid)"/>
-  <rect width="1200" height="630" fill="url(#og-glow)"/>
-  <rect x="80" y="88" width="176" height="36" rx="18" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-opacity="0.38"/>
-  <text x="168" y="111" text-anchor="middle" fill="#A7F3D0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2">PORTFOLIO</text>
-  <text x="80" y="280" fill="#F4F4F5" font-family="system-ui, -apple-system, sans-serif" font-size="76" font-weight="700" letter-spacing="-2.4">Amadul Islam</text>
-  <text x="80" y="348" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="400">CSE Undergraduate · Full-Stack &amp; AI Developer · 1500+ CP Problems</text>
-  <text x="80" y="540" fill="#71717A" font-family="ui-monospace, SFMono-Regular, monospace" font-size="20">github.com/A-I-B-M · amdadulibm@gmail.com</text>
+  <rect width="1200" height="630" fill="#0C0D0E"/>
+  <rect x="48" y="48" width="1104" height="534" rx="14" fill="#131517" stroke="#ECEEEB" stroke-opacity="0.10"/>
+  <circle cx="104" cy="116" r="6" fill="#2EB67D"/>
+  <text x="124" y="122" fill="#9EA4A0" font-family="ui-monospace, SFMono-Regular, monospace" font-size="18">amadul islam · portfolio</text>
+  <text x="96" y="290" fill="#ECEEEB" font-family="system-ui, -apple-system, sans-serif" font-size="76" font-weight="700" letter-spacing="-2.4">Amadul Islam</text>
+  <text x="96" y="354" fill="#9EA4A0" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400">Software Developer · Full-Stack &amp; Applied AI</text>
+  <line x1="96" y1="472" x2="1104" y2="472" stroke="#ECEEEB" stroke-opacity="0.09"/>
+  <text x="96" y="524" fill="#767D79" font-family="ui-monospace, SFMono-Regular, monospace" font-size="20">github.com/A-I-B-M · amdadulibm@gmail.com</text>
 </svg>

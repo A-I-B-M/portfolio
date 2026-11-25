@@ -1,27 +1,19 @@
 interface SectionHeadingProps {
-  id?: string;
-  eyebrow: string;
+  id: string;
+  index: string;
   title: string;
   description?: string;
 }
 
-export function SectionHeading({ id, eyebrow, title, description }: SectionHeadingProps) {
+export function SectionHeading({ id, index, title, description }: SectionHeadingProps) {
   return (
-    <div className="mb-12 max-w-2xl">
-      <p className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-[var(--accent)] uppercase">
-        <span className="h-px w-5 bg-[var(--accent)]" aria-hidden="true" />
-        {eyebrow}
-      </p>
-      <h2
-        id={id}
-        className="heading-gradient block w-fit text-3xl font-bold tracking-tight text-[var(--fg)] sm:text-4xl"
-      >
+    <div className="mb-12 max-w-[65ch]">
+      <p className="type-meta mb-3 text-[var(--text-muted)]">{index}</p>
+      <h2 id={id} className="type-h2 text-[var(--text-primary)]">
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-base leading-relaxed text-[var(--fg-muted)]">
-          {description}
-        </p>
+        <p className="type-body mt-3 text-[var(--text-secondary)]">{description}</p>
       )}
     </div>
   );

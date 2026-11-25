@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonSize = 'sm' | 'md';
 
 interface SharedProps {
   variant?: ButtonVariant;
@@ -24,17 +24,16 @@ export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-[var(--accent-btn)] text-white font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_24px_-6px_rgba(var(--accent-rgb),0.36)] hover:bg-[var(--accent-btn-hover)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.26),0_0_30px_-4px_rgba(var(--accent-rgb),0.48)] hover:-translate-y-0.5 active:translate-y-0',
+    'bg-[var(--accent-strong)] text-[#F6FAF8] font-medium border border-transparent hover:bg-[var(--accent-strong-hover)] active:translate-y-px',
   secondary:
-    'bg-transparent text-[var(--fg)] border border-[var(--border-strong)] hover:bg-[var(--surface-2)] hover:border-[var(--border-strong)] hover:-translate-y-0.5 active:translate-y-0',
+    'bg-transparent text-[var(--text-primary)] font-medium border border-[var(--border-strong)] hover:bg-[var(--surface-hover)] active:translate-y-px',
   ghost:
-    'text-[var(--fg-muted)] hover:text-[var(--fg)] hover:bg-[var(--surface-elevated)]',
+    'bg-transparent text-[var(--text-secondary)] font-medium hover:text-[var(--text-primary)] hover:bg-[var(--surface-hover)]',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3.5 text-sm gap-1.5 rounded-lg',
-  md: 'h-11 px-5 text-sm gap-2 rounded-xl',
-  lg: 'h-12 px-6 text-[15px] gap-2 rounded-xl',
+  sm: 'h-9 px-3.5 text-[13px] gap-1.5 rounded-[6px]',
+  md: 'h-11 px-5 text-[14px] gap-2 rounded-[6px]',
 };
 
 export function Button({
@@ -44,7 +43,7 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center whitespace-nowrap transition-all duration-200 cursor-pointer select-none disabled:opacity-55 disabled:pointer-events-none ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center whitespace-nowrap transition-colors duration-200 cursor-pointer select-none disabled:opacity-50 disabled:pointer-events-none ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
   if ('href' in props && props.href !== undefined) {
     const { href, ...anchorProps } = props;

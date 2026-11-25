@@ -1,12 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { AlertCircle, Check, CheckCircle2, Copy, Mail, Send } from 'lucide-react';
-import { FaLinkedinIn } from 'react-icons/fa6';
-import { SiCodeforces, SiGithub } from 'react-icons/si';
 import { siteContent } from '../data/content';
+import { CodeforcesIcon, GitHubIcon, LinkedInIcon } from './ui/BrandIcons';
 import { Button } from './ui/Button';
-import { Card } from './ui/Card';
 import { Section } from './ui/Section';
-import { SectionHeading } from './ui/SectionHeading';
 
 interface FormValues {
   name: string;
@@ -49,9 +46,9 @@ export function Contact() {
       next.email = 'Please enter a valid email address.';
     }
     if (!draft.message.trim()) {
-      next.message = 'Please include a short message.';
+      next.message = 'Please write a short message.';
     } else if (draft.message.trim().length < 10) {
-      next.message = 'Message should be at least 10 characters.';
+      next.message = 'Message must be at least 10 characters.';
     }
     return next;
   };
@@ -78,7 +75,7 @@ export function Contact() {
           name: values.name.trim(),
           email: values.email.trim(),
           message: values.message.trim(),
-          _subject: `Portfolio contact from ${values.name.trim()}`,
+          _subject: `Portfolio message from ${values.name.trim()}`,
           _replyto: values.email.trim(),
           _template: 'table',
         };
@@ -99,13 +96,13 @@ export function Contact() {
       } else {
         setStatus('error');
         setErrorMessage(
-          `Could not deliver right now. Please try again or email ${contact.email} directly.`,
+          `Message could not be sent right now. Please try again or email ${contact.email} directly.`,
         );
       }
     } catch {
       setStatus('error');
       setErrorMessage(
-        `Unable to reach the mail service right now. You can send it directly via your email app below.`,
+        'Could not reach the mail service. You can open a pre-filled draft in your email app below.',
       );
     }
   };
@@ -122,44 +119,43 @@ export function Contact() {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback: mailto link is always right next to it
+      // mailto link remains directly clickable
     }
   };
 
   const socialItems = [
-    { label: 'GitHub', handle: '@A-I-B-M', href: contact.socials.github, icon: SiGithub },
-    { label: 'LinkedIn', handle: 'in/amdadul09', href: contact.socials.linkedin, icon: FaLinkedinIn },
+    { label: 'GitHub', handle: '@A-I-B-M', href: contact.socials.github, icon: GitHubIcon },
+    { label: 'LinkedIn', handle: 'in/amdadul09', href: contact.socials.linkedin, icon: LinkedInIcon },
     {
       label: 'Codeforces',
       handle: 'amdadul_',
       href: contact.socials.codeforces,
-      icon: SiCodeforces,
+      icon: CodeforcesIcon,
     },
   ];
 
   const inputBaseClass =
-    'w-full rounded-xl border bg-[var(--bg)] px-4 py-3 text-sm text-[var(--fg)] placeholder:text-[var(--fg-subtle)] transition-colors focus:border-[var(--accent)] focus:outline-none';
+    'w-full rounded-[6px] border bg-[var(--bg)] px-3.5 py-2.5 text-[14px] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition-colors focus:border-[var(--accent)] focus:outline-none';
 
   return (
     <Section id="contact" ariaLabelledBy="contact-heading">
-      <SectionHeading
-        id="contact-heading"
-        eyebrow="Contact"
-        title={contact.heading}
-        description={contact.description}
-      />
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
+        {/* Left direct info column */}
+        <div className="lg:col-span-5">
+          <p className="type-meta mb-3 text-[var(--text-muted)]">05 / CONTACT</p>
+          <h2 id="contact-heading" className="type-h2 text-[var(--text-primary)]">
+            {contact.heading}
+          </h2>
+          <p className="type-body mt-4 max-w-[44ch] text-[var(--text-secondary)]">
+            {contact.description}
+          </p>
 
-      <div className="grid gap-6 lg:grid-cols-12">
-        {/* Direct Info & Socials */}
-        <div className="flex flex-col gap-4 lg:col-span-5">
-          <Card className="p-6">
-            <p className="text-xs font-semibold tracking-wider text-[var(--fg-subtle)] uppercase">
-              Direct Email
-            </p>
-            <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="mt-8 border-y border-[var(--border)] py-4">
+            <p className="type-meta text-[var(--text-muted)]">Email</p>
+            <div className="mt-1.5 flex items-center justify-between gap-3">
               <a
                 href={`mailto:${contact.email}`}
-                className="link-underline inline-flex items-center gap-2.5 truncate font-display text-base font-semibold text-[var(--fg)]"
+                className="inline-flex min-w-0 items-center gap-2 font-display text-[15px] font-medium text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
               >
                 <Mail className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
                 <span className="truncate">{contact.email}</span>
@@ -168,11 +164,11 @@ export function Contact() {
                 type="button"
                 onClick={handleCopyEmail}
                 aria-label="Copy email address"
-                className="inline-flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-elevated)] px-2.5 text-xs font-medium text-[var(--fg-muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--fg)]"
+                className="type-meta inline-flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-[6px] border border-[var(--border)] px-2.5 text-[var(--text-secondary)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
               >
                 {copied ? (
                   <>
-                    <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
+                    <Check className="h-3.5 w-3.5 text-[var(--accent)]" aria-hidden="true" />
                     Copied
                   </>
                 ) : (
@@ -183,44 +179,39 @@ export function Contact() {
                 )}
               </button>
             </div>
-          </Card>
+          </div>
 
-          <Card className="flex-1 p-6" hoverLift={false}>
-            <p className="text-xs font-semibold tracking-wider text-[var(--fg-subtle)] uppercase">
-              Elsewhere
-            </p>
-            <ul className="mt-4 space-y-2.5">
-              {socialItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/60 px-4 py-3 text-sm transition-all duration-200 hover:border-[var(--accent)]/40 hover:bg-[var(--surface-elevated)]"
-                    >
-                      <span className="inline-flex items-center gap-3 font-medium text-[var(--fg)]">
-                        <Icon className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
-                        {item.label}
-                      </span>
-                      <span className="text-xs text-[var(--fg-subtle)]">{item.handle}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </Card>
+          <ul className="mt-6 space-y-2.5">
+            {socialItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-[6px] py-1.5 text-[14px] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                  >
+                    <span className="inline-flex items-center gap-2.5 font-medium">
+                      <Icon className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
+                      {item.label}
+                    </span>
+                    <span className="type-meta text-[var(--text-muted)]">{item.handle}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        {/* Formspree Contact Form */}
-        <Card className="p-6 sm:p-8 lg:col-span-7" hoverLift={false}>
+        {/* Right form container */}
+        <div className="rounded-[10px] border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8 lg:col-span-7">
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="mb-2 block text-xs font-semibold tracking-wide text-[var(--fg-muted)] uppercase"
+                  className="type-meta mb-2 block text-[var(--text-secondary)]"
                 >
                   Name
                 </label>
@@ -239,11 +230,11 @@ export function Contact() {
                   aria-invalid={Boolean(errors.name)}
                   aria-describedby={errors.name ? 'contact-name-error' : undefined}
                   className={`${inputBaseClass} ${
-                    errors.name ? 'border-rose-500/70' : 'border-[var(--border-subtle)]'
+                    errors.name ? 'border-rose-500/70' : 'border-[var(--border)]'
                   }`}
                 />
                 {errors.name && (
-                  <p id="contact-name-error" className="mt-1.5 text-xs text-rose-500">
+                  <p id="contact-name-error" className="mt-1.5 text-[12px] text-rose-500">
                     {errors.name}
                   </p>
                 )}
@@ -252,7 +243,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="contact-email"
-                  className="mb-2 block text-xs font-semibold tracking-wide text-[var(--fg-muted)] uppercase"
+                  className="type-meta mb-2 block text-[var(--text-secondary)]"
                 >
                   Email
                 </label>
@@ -271,11 +262,11 @@ export function Contact() {
                   aria-invalid={Boolean(errors.email)}
                   aria-describedby={errors.email ? 'contact-email-error' : undefined}
                   className={`${inputBaseClass} ${
-                    errors.email ? 'border-rose-500/70' : 'border-[var(--border-subtle)]'
+                    errors.email ? 'border-rose-500/70' : 'border-[var(--border)]'
                   }`}
                 />
                 {errors.email && (
-                  <p id="contact-email-error" className="mt-1.5 text-xs text-rose-500">
+                  <p id="contact-email-error" className="mt-1.5 text-[12px] text-rose-500">
                     {errors.email}
                   </p>
                 )}
@@ -285,7 +276,7 @@ export function Contact() {
             <div>
               <label
                 htmlFor="contact-message"
-                className="mb-2 block text-xs font-semibold tracking-wide text-[var(--fg-muted)] uppercase"
+                className="type-meta mb-2 block text-[var(--text-secondary)]"
               >
                 Message
               </label>
@@ -299,15 +290,15 @@ export function Contact() {
                   setValues((prev) => ({ ...prev, message: e.target.value }));
                   if (errors.message) setErrors((prev) => ({ ...prev, message: undefined }));
                 }}
-                placeholder="Tell me about your project, role, or idea..."
+                placeholder="Tell me about the role or project."
                 aria-invalid={Boolean(errors.message)}
                 aria-describedby={errors.message ? 'contact-message-error' : undefined}
                 className={`${inputBaseClass} resize-y ${
-                  errors.message ? 'border-rose-500/70' : 'border-[var(--border-subtle)]'
+                  errors.message ? 'border-rose-500/70' : 'border-[var(--border)]'
                 }`}
               />
               {errors.message && (
-                <p id="contact-message-error" className="mt-1.5 text-xs text-rose-500">
+                <p id="contact-message-error" className="mt-1.5 text-[12px] text-rose-500">
                   {errors.message}
                 </p>
               )}
@@ -316,17 +307,20 @@ export function Contact() {
             {status === 'success' && (
               <div
                 role="status"
-                className="flex items-start gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-sm text-emerald-700 dark:text-emerald-300"
+                className="flex items-start gap-2.5 rounded-[6px] border border-[var(--accent-border)] bg-[var(--accent-subtle)] p-3.5 text-[14px] text-[var(--text-primary)]"
               >
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>Thanks for reaching out! Your message has been sent directly to my inbox.</span>
+                <CheckCircle2
+                  className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]"
+                  aria-hidden="true"
+                />
+                <span>Message sent. I will get back to you soon.</span>
               </div>
             )}
 
             {status === 'error' && errorMessage && (
               <div
                 role="alert"
-                className="flex flex-col gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-sm text-rose-700 dark:text-rose-300"
+                className="flex flex-col gap-2 rounded-[6px] border border-rose-500/35 bg-rose-500/10 p-3.5 text-[14px] text-rose-700 dark:text-rose-300"
               >
                 <div className="flex items-start gap-2.5">
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
@@ -334,17 +328,17 @@ export function Contact() {
                 </div>
                 <a
                   href={mailtoFallbackHref}
-                  className="ml-6 inline-flex w-fit items-center gap-1.5 text-xs font-semibold underline underline-offset-4 hover:opacity-80"
+                  className="ml-6 inline-flex w-fit items-center gap-1.5 text-[13px] font-medium underline underline-offset-4 hover:opacity-80"
                 >
                   <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                  Open pre-filled message in your email app
+                  Open pre-filled draft in email app
                 </a>
               </div>
             )}
 
-            <div className="flex items-center justify-between gap-4 pt-1">
-              <p className="text-xs text-[var(--fg-subtle)]">
-                Messages go directly to my inbox · No spam, ever.
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
+              <p className="type-meta text-[var(--text-muted)]">
+                Sent directly to {contact.email}
               </p>
               <Button type="submit" variant="primary" size="md" disabled={status === 'submitting'}>
                 <Send className="h-4 w-4" aria-hidden="true" />
@@ -352,7 +346,7 @@ export function Contact() {
               </Button>
             </div>
           </form>
-        </Card>
+        </div>
       </div>
     </Section>
   );

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Download, Menu, X } from 'lucide-react';
 import { siteContent } from '../data/content';
 import type { Theme } from '../hooks/useTheme';
@@ -14,15 +13,7 @@ interface NavbarProps {
 
 export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const { personal, navLinks } = siteContent;
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -32,45 +23,29 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const { personal, navLinks } = siteContent;
-
   return (
-    <header
-      className={`sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--nav-glass)] backdrop-blur-xl transition-shadow duration-200 ${
-        scrolled ? 'shadow-[0_10px_30px_-14px_rgba(0,0,0,0.55)]' : ''
-      }`}
-    >
+    <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-md">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-[var(--accent)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-[6px] focus:bg-[var(--accent-strong)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
       >
         Skip to content
       </a>
 
       <nav
         aria-label="Primary navigation"
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
+        className="container-editorial flex h-16 items-center justify-between"
       >
-        {/* Logo / Monogram */}
         <a
           href="#top"
-          className="group inline-flex items-center gap-2.5 text-sm font-semibold tracking-tight text-[var(--fg)]"
+          className="font-display text-[15px] font-semibold tracking-tight text-[var(--text-primary)] transition-colors hover:text-[var(--accent)]"
           aria-label={`${personal.name} — Back to top`}
         >
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--surface)] font-display text-sm font-bold tracking-tight text-[var(--fg)] transition-colors duration-200 group-hover:border-[var(--accent)]/50">
-            {personal.initials}
-            <span
-              className="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-[var(--accent)]"
-              aria-hidden="true"
-            />
-          </span>
-          <span className="hidden font-display text-[15px] font-semibold sm:inline">
-            {personal.name}
-          </span>
+          {personal.name}
         </a>
 
-        {/* Desktop nav links */}
-        <ul className="hidden items-center gap-1 md:flex">
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -78,31 +53,26 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
                 <a
                   href={`#${link.id}`}
                   aria-current={isActive ? 'location' : undefined}
-                  className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors duration-200 ${
+                  className={`relative py-1 text-[14px] transition-colors duration-200 ${
                     isActive
-                      ? 'text-[var(--fg)]'
-                      : 'text-[var(--fg-muted)] hover:text-[var(--fg)]'
+                      ? 'font-medium text-[var(--text-primary)]'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
+                  {link.label}
                   {isActive && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      transition={
-                        shouldReduceMotion
-                          ? { duration: 0 }
-                          : { type: 'spring', stiffness: 420, damping: 34 }
-                      }
-                      className="absolute inset-0 -z-10 rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-elevated)]"
+                    <span
+                      aria-hidden="true"
+                      className="absolute right-0 -bottom-[21px] left-0 h-[2px] bg-[var(--accent)]"
                     />
                   )}
-                  {link.label}
                 </a>
               </li>
             );
           })}
         </ul>
 
-        {/* Right actions */}
+        {/* Desktop right controls */}
         <div className="hidden items-center gap-2.5 md:flex">
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <Button
@@ -125,7 +95,7 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--surface)] text-[var(--fg)] transition-colors hover:bg-[var(--surface-elevated)]"
+            className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-[6px] border border-[var(--border)] bg-transparent text-[var(--text-primary)] transition-colors hover:bg-[var(--surface-hover)]"
           >
             {mobileOpen ? (
               <X className="h-4 w-4" aria-hidden="true" />
@@ -136,53 +106,47 @@ export function Navbar({ theme, onToggleTheme, activeSection }: NavbarProps) {
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, height: 0 }}
-            animate={shouldReduceMotion ? undefined : { opacity: 1, height: 'auto' }}
-            exit={shouldReduceMotion ? undefined : { opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="overflow-hidden border-b border-[var(--border-subtle)] bg-[var(--surface)] md:hidden"
-          >
-            <div className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <a
-                    key={link.id}
-                    href={`#${link.id}`}
-                    onClick={() => setMobileOpen(false)}
-                    aria-current={isActive ? 'location' : undefined}
-                    className={`rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'bg-[var(--surface-elevated)] text-[var(--fg)]'
-                        : 'text-[var(--fg-muted)] hover:bg-[var(--surface-elevated)] hover:text-[var(--fg)]'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-              <div className="mt-3 border-t border-[var(--border-subtle)] pt-3">
-                <Button
-                  href={personal.cvPath}
-                  download={personal.cvDownloadName}
-                  variant="primary"
-                  size="md"
-                  className="w-full"
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div
+          id="mobile-menu"
+          className="border-t border-[var(--border)] bg-[var(--surface)] md:hidden"
+        >
+          <div className="container-editorial flex flex-col gap-1 py-4">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
                   onClick={() => setMobileOpen(false)}
+                  aria-current={isActive ? 'location' : undefined}
+                  className={`rounded-[6px] px-3 py-2.5 text-[14px] transition-colors ${
+                    isActive
+                      ? 'bg-[var(--surface-hover)] font-medium text-[var(--text-primary)]'
+                      : 'text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]'
+                  }`}
                 >
-                  <Download className="h-4 w-4" aria-hidden="true" />
-                  Download CV
-                </Button>
-              </div>
+                  {link.label}
+                </a>
+              );
+            })}
+            <div className="mt-3 border-t border-[var(--border)] pt-3">
+              <Button
+                href={personal.cvPath}
+                download={personal.cvDownloadName}
+                variant="primary"
+                size="md"
+                className="w-full"
+                onClick={() => setMobileOpen(false)}
+              >
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Download CV
+              </Button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

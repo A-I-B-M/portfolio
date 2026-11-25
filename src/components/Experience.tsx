@@ -1,163 +1,121 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import { Award, GraduationCap } from 'lucide-react';
 import { siteContent } from '../data/content';
-import { Card } from './ui/Card';
 import { Section } from './ui/Section';
 import { SectionHeading } from './ui/SectionHeading';
-import { Tag } from './ui/Tag';
 
 export function Experience() {
-  const shouldReduceMotion = useReducedMotion();
   const { experience, education, coursework, awards } = siteContent;
 
   return (
     <Section id="experience" ariaLabelledBy="experience-heading">
       <SectionHeading
         id="experience-heading"
-        eyebrow="Journey"
+        index="04 / EXPERIENCE"
         title="Experience & education"
-        description="Teaching, leading engineering projects, and mentoring peers in competitive programming."
+        description="Teaching labs, leading student software teams, and mentoring peers in competitive programming."
       />
 
-      {/* Vertical Experience Timeline */}
-      <div className="relative pl-6 sm:pl-8">
-        {/* Vertical rail */}
-        <div
-          className="absolute top-2 bottom-2 left-[7px] w-px bg-gradient-to-b from-[var(--accent)] via-[var(--border-strong)] to-transparent sm:left-[9px]"
-          aria-hidden="true"
-        />
-
-        <ol className="space-y-6">
-          {experience.map((item, idx) => (
-            <motion.li
-              key={item.id}
-              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 18 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.45,
-                delay: shouldReduceMotion ? 0 : idx * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative"
-            >
-              {/* Timeline dot */}
+      {/* Clean timeline rows */}
+      <ol className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
+        {experience.map((item) => (
+          <li
+            key={item.id}
+            className="grid gap-3 py-7 sm:grid-cols-[210px_1fr] sm:gap-8"
+          >
+            <div className="flex items-start gap-2.5 pt-1">
               <span
-                className={`absolute top-7 -left-6 flex h-4 w-4 items-center justify-center rounded-full border-2 bg-[var(--bg)] sm:-left-8 sm:h-5 sm:w-5 ${
-                  item.current
-                    ? 'border-[var(--accent)] shadow-[0_0_12px_var(--accent-soft)]'
-                    : 'border-[var(--border-strong)]'
+                className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
+                  item.current ? 'bg-[var(--accent)]' : 'bg-[var(--border-strong)]'
                 }`}
                 aria-hidden="true"
-              >
-                {item.current && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                )}
+              />
+              <span className="type-meta text-[var(--text-muted)] tabular-nums">
+                {item.period}
               </span>
+            </div>
 
-              <Card className="p-6 sm:p-7">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-[var(--fg)] sm:text-xl">
-                      {item.role}
-                    </h3>
-                    <p className="mt-0.5 text-sm font-medium text-[var(--fg-muted)]">
-                      {item.company}
-                    </p>
-                  </div>
-                  <Tag variant={item.current ? 'accent' : 'default'}>{item.period}</Tag>
-                </div>
+            <div>
+              <h3 className="type-h3 text-[var(--text-primary)]">{item.role}</h3>
+              <p className="type-body mt-0.5 text-[var(--text-muted)]">{item.company}</p>
+              <ul className="mt-3 max-w-[65ch] space-y-1.5">
+                {item.bullets.map((bullet, idx) => (
+                  <li
+                    key={idx}
+                    className="type-body flex items-start gap-2.5 text-[var(--text-secondary)]"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[var(--text-muted)]"
+                      aria-hidden="true"
+                    />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
 
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[var(--fg-muted)]">
-                  {item.bullets.map((bullet, bulletIdx) => (
-                    <li key={bulletIdx} className="flex items-start gap-2.5">
-                      <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]/80"
-                        aria-hidden="true"
-                      />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.li>
-          ))}
-        </ol>
-      </div>
-
-      {/* Education + Awards Blocks */}
-      <div className="mt-14 grid gap-6 lg:grid-cols-12">
-        {/* Education */}
+      {/* Education & Awards compact block */}
+      <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-6">
-          <div className="mb-4 flex items-center gap-2.5">
-            <GraduationCap className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
-            <h3 className="font-display text-xl font-bold text-[var(--fg)]">Education</h3>
-          </div>
-          <div className="space-y-4">
+          <h3 className="type-meta mb-5 font-semibold tracking-wide text-[var(--text-primary)] uppercase">
+            Education
+          </h3>
+          <ul className="space-y-6">
             {education.map((edu) => (
-              <Card key={edu.id} className="p-5 sm:p-6">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <h4 className="font-display text-base font-semibold text-[var(--fg)]">
-                      {edu.institution}
-                    </h4>
-                    <p className="mt-0.5 text-sm text-[var(--fg-muted)]">{edu.degree}</p>
-                  </div>
-                  <span className="text-xs font-medium text-[var(--fg-subtle)] tabular-nums">
+              <li
+                key={edu.id}
+                className="border-l border-[var(--border-strong)] pl-4"
+              >
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h4 className="font-display text-[16px] font-semibold text-[var(--text-primary)]">
+                    {edu.institution}
+                  </h4>
+                  <span className="type-meta text-[var(--text-muted)] tabular-nums">
                     {edu.period}
                   </span>
                 </div>
-                <div className="mt-3 flex flex-wrap items-center gap-2">
-                  <Tag variant="accent">{edu.grade}</Tag>
-                  {edu.details && <Tag>{edu.details}</Tag>}
-                </div>
-              </Card>
+                <p className="type-body mt-0.5 text-[var(--text-secondary)]">{edu.degree}</p>
+                <p className="type-meta mt-1.5 text-[var(--accent)]">
+                  {edu.grade}
+                  {edu.details ? ` · ${edu.details}` : ''}
+                </p>
+              </li>
             ))}
+          </ul>
 
-            {/* Relevant Coursework */}
-            <Card className="p-5 sm:p-6" hoverLift={false}>
-              <p className="text-xs font-semibold tracking-wider text-[var(--fg-subtle)] uppercase">
-                Core Coursework
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {coursework.map((course) => (
-                  <Tag key={course}>{course}</Tag>
-                ))}
-              </div>
-            </Card>
+          <div className="mt-8 border-t border-[var(--border)] pt-5">
+            <p className="type-meta text-[var(--text-muted)]">Core Coursework</p>
+            <p className="type-body mt-1.5 text-[var(--text-secondary)]">
+              {coursework.join(' · ')}
+            </p>
           </div>
         </div>
 
-        {/* Honors & Awards */}
         <div className="lg:col-span-6">
-          <div className="mb-4 flex items-center gap-2.5">
-            <Award className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
-            <h3 className="font-display text-xl font-bold text-[var(--fg)]">
-              Awards &amp; Recognition
-            </h3>
-          </div>
-          <Card className="p-5 sm:p-6" hoverLift={false}>
-            <ul className="divide-y divide-[var(--border-subtle)]">
-              {awards.map((award) => (
-                <li
-                  key={award.id}
-                  className="flex flex-wrap items-start justify-between gap-2 py-3.5 first:pt-0 last:pb-0"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-[var(--fg)]">{award.title}</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-[var(--fg-muted)]">
-                      {award.context}
-                    </p>
-                  </div>
-                  {award.year && (
-                    <span className="shrink-0 text-xs font-medium text-[var(--fg-subtle)] tabular-nums">
-                      {award.year}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Card>
+          <h3 className="type-meta mb-5 font-semibold tracking-wide text-[var(--text-primary)] uppercase">
+            Awards &amp; Recognition
+          </h3>
+          <ul className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
+            {awards.map((award) => (
+              <li
+                key={award.id}
+                className="flex items-baseline justify-between gap-4 py-3.5"
+              >
+                <div className="min-w-0">
+                  <p className="text-[14px] font-medium text-[var(--text-primary)]">
+                    {award.title}
+                  </p>
+                  <p className="mt-0.5 text-[13px] text-[var(--text-muted)]">{award.context}</p>
+                </div>
+                {award.year && (
+                  <span className="type-meta shrink-0 text-[var(--text-muted)] tabular-nums">
+                    {award.year}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Section>

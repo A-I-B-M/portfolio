@@ -9,12 +9,12 @@ interface TagProps {
 export function Tag({ children, variant = 'default', className = '' }: TagProps) {
   const styles =
     variant === 'accent'
-      ? 'bg-[var(--accent-soft)] text-[var(--accent)] border border-[var(--accent)]/25'
-      : 'bg-[var(--surface-elevated)] text-[var(--fg-muted)] border border-[var(--border-subtle)]';
+      ? 'bg-[var(--accent-subtle)] text-[var(--accent)] border-[var(--accent-border)]'
+      : 'bg-[var(--surface)] text-[var(--text-secondary)] border-[var(--border)]';
 
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium leading-none tracking-tight ${styles} ${className}`}
+      className={`type-meta inline-flex items-center rounded-[6px] border px-2.5 py-1 leading-none ${styles} ${className}`}
     >
       {children}
     </span>
