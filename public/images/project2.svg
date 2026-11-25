@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
   <defs>
     <linearGradient id="p2-bg" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0A0A0E"/>
-      <stop offset="50%" stop-color="#141326"/>
-      <stop offset="100%" stop-color="#0B0B10"/>
+      <stop offset="0%" stop-color="#0B0B0E"/>
+      <stop offset="50%" stop-color="#0F1B18"/>
+      <stop offset="100%" stop-color="#0A0B0D"/>
     </linearGradient>
     <radialGradient id="p2-glow" cx="0.76" cy="0.62" r="0.58">
-      <stop offset="0%" stop-color="#818CF8" stop-opacity="0.32"/>
-      <stop offset="100%" stop-color="#818CF8" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
     </radialGradient>
     <pattern id="p2-grid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="1"/>
@@ -17,18 +17,18 @@
   <rect width="1280" height="720" fill="url(#p2-grid)"/>
   <rect width="1280" height="720" fill="url(#p2-glow)"/>
   <!-- Stylized code duel cards -->
-  <rect x="740" y="160" width="440" height="290" rx="18" fill="#111118" fill-opacity="0.85" stroke="#818CF8" stroke-opacity="0.28"/>
+  <rect x="740" y="160" width="440" height="290" rx="18" fill="#111516" fill-opacity="0.86" stroke="#10B981" stroke-opacity="0.28"/>
   <circle cx="772" cy="192" r="6" fill="#52525B"/>
   <circle cx="794" cy="192" r="6" fill="#52525B"/>
-  <circle cx="816" cy="192" r="6" fill="#818CF8"/>
-  <rect x="772" y="230" width="220" height="12" rx="6" fill="#818CF8" fill-opacity="0.5"/>
+  <circle cx="816" cy="192" r="6" fill="#10B981"/>
+  <rect x="772" y="230" width="220" height="12" rx="6" fill="#10B981" fill-opacity="0.55"/>
   <rect x="772" y="260" width="320" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.14"/>
   <rect x="772" y="290" width="270" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.10"/>
-  <rect x="772" y="320" width="350" height="12" rx="6" fill="#818CF8" fill-opacity="0.28"/>
-  <rect x="772" y="366" width="130" height="38" rx="10" fill="#6366F1" fill-opacity="0.28" stroke="#818CF8" stroke-opacity="0.5"/>
-  <text x="837" y="390" text-anchor="middle" fill="#E0E7FF" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14" font-weight="600">1v1 LIVE</text>
-  <rect x="88" y="88" width="225" height="36" rx="18" fill="#818CF8" fill-opacity="0.14" stroke="#818CF8" stroke-opacity="0.35"/>
-  <text x="200" y="111" text-anchor="middle" fill="#C7D2FE" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2">REAL-TIME CONTESTS</text>
+  <rect x="772" y="320" width="350" height="12" rx="6" fill="#10B981" fill-opacity="0.28"/>
+  <rect x="772" y="366" width="130" height="38" rx="10" fill="#059669" fill-opacity="0.30" stroke="#10B981" stroke-opacity="0.52"/>
+  <text x="837" y="390" text-anchor="middle" fill="#D1FAE5" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14" font-weight="600">1v1 LIVE</text>
+  <rect x="88" y="88" width="225" height="36" rx="18" fill="#10B981" fill-opacity="0.14" stroke="#10B981" stroke-opacity="0.38"/>
+  <text x="200" y="111" text-anchor="middle" fill="#A7F3D0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="1.2">REAL-TIME CONTESTS</text>
   <text x="88" y="340" fill="#F4F4F5" font-family="system-ui, -apple-system, sans-serif" font-size="60" font-weight="700" letter-spacing="-1.8">EasyCode</text>
   <text x="88" y="392" fill="#A1A1AA" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">React · Spring Boot · WebSocket · MySQL · AI</text>
   <rect x="88" y="592" width="276" height="40" rx="8" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.12"/>

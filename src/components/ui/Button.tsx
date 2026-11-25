@@ -24,7 +24,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-[var(--accent)] text-white dark:text-[#0B0B0F] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_0_30px_-6px_rgba(var(--accent-rgb),0.5)] hover:bg-[var(--accent-hover)] dark:hover:bg-[#A5B4FC] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.38),0_0_36px_-4px_rgba(var(--accent-rgb),0.65)] hover:-translate-y-0.5 active:translate-y-0',
+    'bg-[var(--accent)] text-white dark:text-[#0B0B0F] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_0_30px_-6px_rgba(var(--accent-rgb),0.5)] hover:bg-[var(--accent-hover)] dark:hover:bg-[#34D399] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.38),0_0_36px_-4px_rgba(var(--accent-rgb),0.65)] hover:-translate-y-0.5 active:translate-y-0',
   secondary:
     'bg-transparent text-[var(--fg)] border border-[var(--border-strong)] hover:bg-[var(--surface-2)] hover:border-[var(--border-strong)] hover:-translate-y-0.5 active:translate-y-0',
   ghost:
