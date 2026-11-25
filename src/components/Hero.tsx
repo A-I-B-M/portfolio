@@ -151,7 +151,7 @@ export function Hero() {
                     rel={social.external ? 'noopener noreferrer' : undefined}
                     aria-label={social.label}
                     title={social.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--surface)] text-[var(--fg-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/40 hover:text-[var(--fg)]"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--surface)] text-[var(--accent)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent)]/55 hover:bg-[var(--accent-soft)] hover:text-[var(--accent-hover)] hover:shadow-[0_0_24px_-6px_rgba(var(--accent-rgb),0.45)]"
                   >
                     <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                   </a>
