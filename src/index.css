@@ -37,8 +37,8 @@
   --border-strong: rgba(13, 13, 16, 0.16);
   --accent: #16A34A;
   --accent-hover: #15803D;
-  --accent-btn: #16A34A;
-  --accent-btn-hover: #15803D;
+  --accent-btn: #15803D;
+  --accent-btn-hover: #166534;
   --accent-rgb: 22, 163, 74;
   --accent-soft: rgba(22, 163, 74, 0.11);
   --spotlight-color: rgba(22, 163, 74, 0.09);
@@ -64,8 +64,8 @@
   --border-strong: rgba(255, 255, 255, 0.14);
   --accent: #22C55E;
   --accent-hover: #4ADE80;
-  --accent-btn: #16A34A;
-  --accent-btn-hover: #22C55E;
+  --accent-btn: #15803D;
+  --accent-btn-hover: #16A34A;
   --accent-rgb: 34, 197, 94;
   --accent-soft: rgba(34, 197, 94, 0.13);
   --spotlight-color: rgba(34, 197, 94, 0.15);
