@@ -59,7 +59,7 @@ export const siteContent = {
       'AI Engineer',
       'Full-Stack Developer',
       'Data Science Enthusiast',
-      'Competitive Programmer',
+      // 'Competitive Programmer',
     ],
     tagline: 'Programmer · Full-Stack & AI Enthusiast',
     availability: 'Available for work',
