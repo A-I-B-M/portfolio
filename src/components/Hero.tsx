@@ -4,6 +4,7 @@ import { FaLinkedinIn } from 'react-icons/fa6';
 import { SiCodeforces, SiGithub } from 'react-icons/si';
 import { siteContent } from '../data/content';
 import { images } from '../data/images';
+import { TypingRoles } from './TypingRoles';
 import { Button } from './ui/Button';
 
 export function Hero() {
@@ -93,9 +94,10 @@ export function Hero() {
             className="text-4xl font-bold tracking-tight text-[var(--fg)] sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]"
           >
             <span className="heading-gradient inline-block">{personal.name}</span>
-            <span className="mt-2 block text-2xl font-semibold text-[var(--fg-muted)] sm:text-3xl lg:text-[2.15rem]">
-              {personal.role}
-            </span>
+            <TypingRoles
+              roles={personal.roles}
+              className="mt-2 text-xl font-semibold sm:text-3xl lg:text-[2.15rem]"
+            />
           </motion.h1>
 
           {/* One-line value proposition */}

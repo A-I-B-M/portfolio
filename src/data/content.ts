@@ -54,7 +54,13 @@ export const siteContent = {
   personal: {
     name: 'Amadul Islam',
     initials: 'AI',
-    role: 'CSE Undergraduate & Software Developer',
+    roles: [
+      'Software Developer',
+      'AI Engineer',
+      'Full-Stack Developer',
+      'Data Science Enthusiast',
+      'Competitive Programmer',
+    ],
     tagline: 'Programmer · Full-Stack & AI Enthusiast',
     availability: 'Available for work',
     valueProposition:
